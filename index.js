@@ -5,5 +5,6 @@ document.querySelectorAll("button").forEach( button=>{
 
 
 function handleClickforButtons(){
-    alert("I got clicked!");
+   var audio =new Audio("sounds/tom-1.mp3");
+   audio.play();
 }
