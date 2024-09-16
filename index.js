@@ -1,3 +1,5 @@
+//Detecting Button Press
+
 var numberOfButtons = document.querySelectorAll(".drum").length;
 
 for ( var i=0; i < numberOfButtons; i++){
@@ -5,7 +7,23 @@ for ( var i=0; i < numberOfButtons; i++){
 
     var buttonInnerHTML = this.innerHTML;
 
-    switch (buttonInnerHTML) {
+    makeSound(buttonInnerHTML);
+
+    buttonAnimation(buttonInnerHTML);
+
+  });
+
+  //Detecting Keyboard Press
+
+  document.addEventListener("keydown", function(event){
+    makeSound(event.key)
+    buttonAnimation(event.key)
+
+  });
+
+  //Create a brand new function
+  function makeSound(key){
+    switch (key) {
       case "w":
         var tom1 = new Audio("sounds/tom-1.mp3");
         tom1.play();
@@ -44,7 +62,19 @@ for ( var i=0; i < numberOfButtons; i++){
       default: console.log(buttonInnerHTML);
         break;
     }
-  });
-
+    
+  }
  
+
+  function buttonAnimation(currentKey){
+    var activeButton= document.querySelector("."+currentKey)
+
+    activeButton.classList.add("pressed");
+    // "pressed" is from css, i now add class into it so it can run
+
+    setTimeout(function(){
+      activeButton.classList.remove("pressed");
+    },100);
+
+  }
 }
